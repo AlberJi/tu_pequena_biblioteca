@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
+    <title>Biblioteca personal</title>
+</head>
+
+<body>
+<header th:replace="~{fragmentos::barra-nav}"></header>
+    <main>
+        <div class="contendor_novel">
+            <h2>Novelas</h2>
+            <div class="imagenes" th:each="novela  : ${novelas}">
+                <div>
+                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                        <img th:src="${novela.imagen}" src="" width="450px"/>
+                        <span th:text="${novela.titulo}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+<footer th:replace="~{fragmentos::footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
+
+    <title>Leer x(novela)</title>
+</head>
+
+<body>
+<header th:replace="~{fragmentos::barra-nav}"></header>
+<main>
+    <div class="container">
+        <div class="novel" th:each=" novel : ${novelaVista}">
+            <img th:src="@{${novel.imagen}}" alt="imagen de novela">
+            <div>
+                <h3>Sipnosis</h3>
+                <a sec:authorize="isAuthenticated()" th:href="@{/bibliotecaPersonal/{nombre}(novelaId=${novel.id},nombre=${#authentication.name})}">Agregar a la biblioteca</a>
+                <p th:text="${novel.autor}">Autor: x</p>
+                <p th:text="${novel.sinopsis}">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti nemo voluptate nesciunt?
+                    Necessitatibus, voluptatem aspernatur nisi cumque dolor fugiat minima voluptatum aperiam rerum
+                    aliquid dolorem,
+                    impedit numquam quasi excepturi explicabo!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Contenido</h2>
+        <div class="contenido">
+                    <ul class="capitulos">
+                        <a th:each=" capitulos : ${novelaCapitulos}" th:href="@{/novela/{nombre_novela}/{nombre}(nombre_novela=${capitulos.novela.titulo}, nombre=${capitulos.titulo})}">
+                            <li th:text="${'Capitulo ' +capitulos.numero}">Capitulo 1</li>
+                        </a>
+                    </ul>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragmentos::footer}"></footer>
+</body>
+
+</html>

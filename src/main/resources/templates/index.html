@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
+    <title>Home</title>
+</head>
+
+
+<body>
+    <header th:replace="~{fragmentos::barra-nav}"></header>
+    <main>
+        <div id="contenido">
+        <div class="contendor_novel">
+            <h2>Nuevas novelas</h2>
+            <div class="imagenes" th:each="novela : ${listaNovelasNuevas}">
+                <div>
+                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                    <img th:src="${novela.imagen}" src="" width="450px"/>
+                    <span th:text="${novela.titulo + 'hola'}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="contendor_novel">
+            <h2>Recomendadas</h2>
+            <div class="imagenes" th:each="novela : ${listaNovelasPun}">
+                <div>
+                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                        <img th:src="${novela.imagen}" src="" width="450px"/>
+                        <span th:text="${novela.titulo + 'hola'}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer th:replace="~{fragmentos::footer}"></footer>
+    <th:block th:replace="fragmentos::jsfinal(~{})"></th:block>
+</body>
+
+</html>

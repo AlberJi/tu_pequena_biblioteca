@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
+
+    <title>Leer x(novela)</title>
+</head>
+
+<body>
+<header th:replace="~{fragmentos::barra-nav}"></header>
+<main>
+    <div class="container">
+            <div class="action-panel">
+                <h4 class="title"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">Género / Categoría</span></span></h4>
+                <div id="category-list" class="scroll-wrapper">
+                    <ul class="action-list scroll" >
+                        <li th:each=" gene : ${generos}">
+                            <a class="" th:href="@{/busqueda/{genero}(genero=${gene.nombre})}">
+                                <span style="vertical-align: inherit;">
+                                    <span th:text="${gene.nombre}" style="vertical-align: inherit;">
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <div class="contendor_novel">
+            <h2>Novelas</h2>
+            <div class="imagenes" th:each="novela : ${novelas ?: novelasPorgenero}">
+                <div>
+                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                        <img th:src="${novela.imagen}" src="" width="450px"/>
+                        <span th:text="${novela.titulo + 'hola'}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragmentos::footer}"></footer>
+</body>
+
+</html>

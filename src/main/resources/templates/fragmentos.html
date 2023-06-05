@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="encabezado(titulo,enlaces)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title th:replace="${titulo}">Tu pequeña biblioteca</title>
+    <link th:href="@{/css/general.css}" rel="stylesheet">
+    <link th:href="@{/img/}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    <!-- Carrusel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font awesome icons -->
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet">
+
+    <!-- Estilos o scripts adicionales -->
+    <th:block th:replace="${enlaces}"></th:block>
+
+</head>
+<body>
+<header th:fragment="barra-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" th:href="@{/}"> <img th:src="@{../img/logo.png}" alt="imagen de novela"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" th:href="@{/}">Home<span class="sr-only"></span></a>
+                </li>
+                <li sec:authorize="isAuthenticated()" th:href="@{/bibliotecaPersonal/{nombre}(nombre=${#authentication.name})}" class="nav-item">
+                    <a class="nav-link" th:href="@{/bibliotecaPersonal/{nombre}(nombre=${#authentication.name})}">Biblioteca personal</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/login}">
+                        <span th:text="#{header.inisesión}">Iniciar Sesión</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/busqueda}">
+                        </i><span>Novelas</span></a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/user/new}">
+                        <span th:text="#{header.regis}">Registrarse</span></a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <form th:action="@{/logout}" method="post" id="logoutForm"></form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<footer class="text-center text-lg-start text-white bg-dark" th:fragment="footer">
+    <div class="container p-2 pb-0">
+        <section class="">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">
+                        Proyecto final de curso DAW2
+                    </h6>
+                    <p>
+                        Este es el proyecto final de curso DAW2.
+                    </p>
+                </div>
+                <hr class="w-100 clearfix d-md-none" />
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Productos</h6>
+                    <p>
+                        <a class="text-white">Novelas</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Biblioteca personal</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Suscripciones</a>
+                    </p>
+                </div>
+                <hr class="w-100 clearfix d-md-none" />
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a class="text-white">Tu cuenta</a>
+                    </p>
+                    <p>
+                    <p>
+                        <a class="text-white">Ayuda</a>
+                    </p>
+                </div>
+                <hr class="w-100 clearfix d-md-none" />
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contacto</h6>
+                    <p><i class="fas fa-envelope mr-3"></i>albertojg@2000gmail.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> +34 640 81 74 79</p>
+                </div>
+            </div>
+        </section>
+        <hr class="my-3">
+        <section class="p-3 pt-0">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-7 col-lg-8 text-center text-md-start">
+                    <div class="p-3">
+                        © 2023 Copyright:
+                        <a class="text-white">Alberto</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+<th:block th:fragment="jsfinal(scripts)">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <!-- Dark Mode switch -->
+    <script sec:authorize="isAuthenticated()" th:src="@{/js/switch.js}"></script>
+
+    <th:block th:replace="${scripts}" />
+</th:block>
+</body>
+</html>

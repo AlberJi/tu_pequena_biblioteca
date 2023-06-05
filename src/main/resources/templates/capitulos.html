@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
+
+    <title>Capitulo</title>
+</head>
+
+<body>
+<header th:replace="~{fragmentos::barra-nav}"></header>
+    <main>
+
+        <div class="texto" th:each=" capitulo : ${capituloVista}">
+            <div th:text="${capitulo.novela.titulo + ' Capitulo:' + capitulo.titulo}">Titulo de Novela</div>
+            <div th:text="${capitulo.parrafo}">Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.
+                Itaque hic, facere optio qui neque ullam quam soluta,
+                repellat quibusdam reprehenderit aspernatur enim atque,
+                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
+            </div>
+            <div th:text="${capitulo.parrafo2}">Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.
+                Itaque hic, facere optio qui neque ullam quam soluta,
+                repellat quibusdam reprehenderit aspernatur enim atque,
+                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
+            </div>
+            <div th:text="${capitulo.parrafo3}">Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit.
+                Itaque hic, facere optio qui neque ullam quam soluta,
+                repellat quibusdam reprehenderit aspernatur enim atque,
+                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <nav aria-label="Pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${prev.titulo},nombre_novela=${capituloVista.novela.titulo})}"
+                               th:classappend="${current == first ? 'disabled' : ''}">Anterior</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{/novela/{nombre_novela}(nombre_novela=${capituloVista.novela.titulo})}">TOC</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${next.titulo},nombre_novela=${capituloVista.novela.titulo})}"
+                               th:classappend="${current == last ? 'disabled' : ''}">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+<footer th:replace="~{fragmentos::footer}"></footer>
+</body>
+
+</html>

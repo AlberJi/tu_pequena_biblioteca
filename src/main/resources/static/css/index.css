@@ -1,0 +1,23 @@
+body{
+    background: #eef0f2;
+    font-family: fira sans,sans-serif;
+    font-size: 14px;
+    line-height: 1.2em;
+    color: #222;
+    margin: 0 auto;
+}  
+#contenido{
+    max-width: 1220px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+  
+.contendor_novel{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    margin-bottom: 18px;
+    box-shadow: 1px 3px 8px rgba(49,49,49,.1);
+    overflow: hidden;
+  }
