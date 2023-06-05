@@ -1,4 +1,4 @@
-package com.alberto.tu_pequena_biblioteca;
+package com.alberto.tupequenabiblioteca;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
