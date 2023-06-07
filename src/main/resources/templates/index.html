@@ -6,36 +6,62 @@
 </head>
 
 
-<body>
-    <header th:replace="~{fragmentos::barra-nav}"></header>
-    <main>
-        <div id="contenido">
-        <div class="contendor_novel">
-            <h2>Nuevas novelas</h2>
-            <div class="imagenes" th:each="novela : ${listaNovelasNuevas}">
-                <div>
-                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
-                    <img th:src="${novela.imagen}" src="" width="450px"/>
-                    <span th:text="${novela.titulo + 'hola'}"></span>
-                    </a>
+<body class="darkmode">
+<header th:replace="~{fragmentos::barra-nav}"></header>
+<main>
+    <div id="content">
+        <div class="wrapper">
+            <div class="postbody">
+                <div class="bixbox">
+                    <div class="releases latesthome">
+                        <h3>Nuevas novelas</h3>
+                    </div>
+                    <div class="listupd">
+                        <div class="excstf">
+                            <article class="bs" th:each="novela : ${listaNovelasNuevas}">
+                                <div class="bsx">
+                                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                                        <div class="limit">
+                                            <img th:src="${novela.imagen}"  class="ts-post-image wp-post-image attachment-medium size-medium entered litespeed-loaded" width="151" height="215" >
+                                        </div>
+                                        <div class="tt">
+                                            <span class="ntitle" th:text="${novela.titulo}"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="contendor_novel">
-            <h2>Recomendadas</h2>
-            <div class="imagenes" th:each="novela : ${listaNovelasPun}">
-                <div>
-                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
-                        <img th:src="${novela.imagen}" src="" width="450px"/>
-                        <span th:text="${novela.titulo + 'hola'}"></span>
-                    </a>
+                <div class="bixbox">
+                    <div class="releases latesthome">
+                        <h3>Recomendadas</h3>
+                    </div>
+                    <div class="listupd">
+                        <div class="excstf"  th:each="novela : ${listaNovelasPun}">
+                            <div class="utao styletree">
+                                <div class="uta">
+                                    <div class="imgu">
+                                        <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                                            <img data-lazyloaded="1" th:src="${novela.imagen}" class="ts-post-image wp-post-image attachment-medium size-medium entered litespeed-loaded" loading="lazy" itemprop="image" width="120" height="170" data-ll-status="loaded">
+                                        </a>
+                                    </div>
+                                    <div class="luf">
+                                        <a class="series" th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                                            <h3 th:text="${novela.titulo}"></h3>
+                                        </a>
+                                        <span th:text="${novela.sinopsis}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </main>
-    <footer th:replace="~{fragmentos::footer}"></footer>
-    <th:block th:replace="fragmentos::jsfinal(~{})"></th:block>
+</main>
+<footer th:replace="~{fragmentos::footer}"></footer>
+<th:block th:replace="fragmentos::jsfinal(~{})"></th:block>
 </body>
-
 </html>

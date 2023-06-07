@@ -7,33 +7,49 @@
     <title>Leer x(novela)</title>
 </head>
 
-<body>
+<body class="darkmode">
 <header th:replace="~{fragmentos::barra-nav}"></header>
 <main>
-    <div class="container">
-            <div class="action-panel">
-                <h4 class="title"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">Género / Categoría</span></span></h4>
-                <div id="category-list" class="scroll-wrapper">
-                    <ul class="action-list scroll" >
-                        <li th:each=" gene : ${generos}">
+    <div id="content">
+        <div class="wrapper">
+            <div class="postbody">
+                <div class="bixbox">
+                    <div class="releases">
+                        <h3>Generos</h3>
+                    </div>
+                    <div class="advancedsearch">
+                        <div class="bottom tags"  th:each=" gene : ${generos}">
                             <a class="" th:href="@{/busqueda/{genero}(genero=${gene.nombre})}">
                                 <span style="vertical-align: inherit;">
-                                    <span th:text="${gene.nombre}" style="vertical-align: inherit;">
-                                    </span>
-                                </span>
+                                    <span th:text="${gene.nombre}" style="vertical-align: inherit;"></span>
+                                 </span>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        <div class="contendor_novel">
-            <h2>Novelas</h2>
-            <div class="imagenes" th:each="novela : ${novelas ?: novelasPorgenero}">
-                <div>
-                    <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
-                        <img th:src="${novela.imagen}" src="" width="450px"/>
-                        <span th:text="${novela.titulo + 'hola'}"></span>
-                    </a>
+                <div class="bixbox">
+                    <div class="releases latesthome">
+                        <h3>Novelas</h3>
+                    </div>
+                    <div class="listupd">
+                        <div class="excstf"  th:each="novela : ${novelas ?: novelasPorgenero}">
+                            <div class="utao styletree">
+                                <div class="uta">
+                                    <div class="imgu">
+                                        <a th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                                            <img data-lazyloaded="1" th:src="${novela.imagen}" class="ts-post-image wp-post-image attachment-medium size-medium entered litespeed-loaded" loading="lazy" itemprop="image" width="120" height="170" data-ll-status="loaded">
+                                        </a>
+                                    </div>
+                                    <div class="luf">
+                                        <a class="series" th:href="@{/novela/{nombre}(nombre=${novela.titulo})}">
+                                            <h3 th:text="${novela.titulo}"></h3>
+                                        </a>
+                                        <span th:text="${novela.sinopsis}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

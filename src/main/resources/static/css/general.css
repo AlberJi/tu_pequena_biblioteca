@@ -20,9 +20,7 @@
 .bloque a{
     display: block;
 }
-.texto{
-    text-align: center;
-}
+
 .novel{
     display: flex;
 }

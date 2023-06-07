@@ -3,6 +3,7 @@ package com.alberto.tupequenabiblioteca.servicios;
 import com.alberto.tupequenabiblioteca.entidades.Capitulos;
 import com.alberto.tupequenabiblioteca.repositorios.CapitulosRepository;
 import jakarta.transaction.Transactional;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
+@Data
 @RequiredArgsConstructor
 @Service
 public class CapitulosService {

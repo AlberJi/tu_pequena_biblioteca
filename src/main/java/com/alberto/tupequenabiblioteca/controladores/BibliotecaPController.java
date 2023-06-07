@@ -32,36 +32,7 @@ public class BibliotecaPController {
     private final BibliotecaPService biblioteca_Personal;
     @Autowired
     private final BibliotecaPRepository repositorioBiP;
-//    @GetMapping("/{nombre}")
-//    public String bibliotecaP(@PathVariable String nombre, Model model) {
-//        Usuarios usuarios = usuariosService.findByNombre(nombre);
-//        BibliotecaPersonal bibliotecaPersonal = biblioteca_Personal.findByUsuarioId(usuarios.getId());
-//
-//        if (bibliotecaPersonal == null) {
-//            bibliotecaPersonal = new BibliotecaPersonal();
-//            bibliotecaPersonal.setUsuario(usuarios);
-//            bibliotecaPersonal = biblioteca_Personal.save(bibliotecaPersonal);
-//        }
-//        List<Novela> novelas = new ArrayList<>(bibliotecaPersonal.getNovelas());
-//        model.addAttribute("novelas", novelas);
-//
-//
-//        return "bibliotecaPersonal";
-//    }
-//    @GetMapping("/favoritos/new")
-//    public String agregarNovelaABiblioteca(@RequestParam("novelaId") long novelaId, Principal principal, Model model) {
-//        String nombreUsuario = principal.getName();
-//        Usuarios usuario = usuariosService.findByNombre(nombreUsuario);
-//        long usuarioId = usuario.getId();
-//
-//        System.out.println("ID del usuario: " + usuarioId);
-//
-//        biblioteca_Personal.agregarNovelaABiblioteca(usuarioId, novelaId);
-//
-//        model.addAttribute("redirectUrl", "/bibliotecaPersonal/" + nombreUsuario);
-//
-//        return "redirect:/redirect";
-//    }
+
 
     @GetMapping("/{nombre}")
     public String bibliotecaP(@PathVariable String nombre, @RequestParam(value = "novelaId", required = false) Long novelaId, Principal principal, Model model) {

@@ -7,32 +7,44 @@
   <title>Login</title>
 </head>
 
-<body>
+<body class="darkmode">
 <header th:replace="~{fragmentos::barra-nav}"></header>
 <main>
-  <div class="container">
-    <div sec:authorize="!isAuthenticated()" class="card">
-      <div class="card-body pt-3">
-        <form th:action="@{/login}" method="post">
-          <div class="form-group row">
-            <label for="login-username" class="col-sm-2 col-form-label">Nombre</label>
-            <div class="col-sm-10 bloquetext">
-              <input id="login-username" type="text" class="form-control" name="username" placeholder="Nombre">
+  <div id="content">
+    <div sec:authorize="!isAuthenticated()" class="wrapper">
+      <div class="postbody">
+        <div class="bixbox">
+          <div class="releases">
+            <h1>Acceso</h1>
+          </div>
+          <div class="page">
+            <div class="um" style="opacity: 1;">
+              <div class="um-form">
+                <form th:action="@{/login}" method="post">
+                  <div class="form-group row">
+                    <label for="login-username" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-10 bloquetext">
+                      <input id="login-username" type="text" class="form-control" name="username" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="input-group row">
+                    <label for="login-password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10 bloquetext">
+                      <input id="login-password" type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="col-sm-10">
+                    <button id="btn-logi" type="submit" class="btn btn-primary">Acceso</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-          <div class="input-group row">
-            <label for="login-password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10 bloquetext">
-              <input id="login-password" type="password" class="form-control" name="password" placeholder="Password">
-            </div>
-          </div>
-          <div class="col-sm-10">
-            <button id="btn-login" type="submit" class="btn btn-primary">Sign in</button>
-          </div>
-        </form>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
+
 </main>
 </body>
 

@@ -12,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -37,10 +40,10 @@ public class NovelaController {
     }
 
     @GetMapping("/{nombre_novela}/{nombre}")
-    public String novelaCapitulo(@PathVariable String nombre, String nombre_novela, Model model) {
+    public String novelaCapitulo(@PathVariable String nombre,@PathVariable String nombre_novela, Model model) {
         Capitulos listaid = capitulosService.findByName(nombre);
-
-        List<Capitulos> listado = capitulosService.findAllByNovelaId(listaid.getNovela().getId());
+        long id = listaid.getNovela().getId();
+        List<Capitulos> listado = capitulosService.findAllByNovelaId(id);
         int indiceActual = -1;
         int previo = -1;
         int siguiente = -1;
@@ -65,8 +68,10 @@ public class NovelaController {
         model.addAttribute("first", listado.get(0));
         model.addAttribute("last", listado.get(listado.size() - 1));
         model.addAttribute("capituloVista", listaid);
+        model.addAttribute("novela_nombre", nombre_novela);
 
         return "capitulos";
     }
+
 
 }

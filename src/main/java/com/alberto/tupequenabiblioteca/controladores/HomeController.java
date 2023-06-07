@@ -33,7 +33,7 @@ public class HomeController {
 
     @GetMapping({"", "index"})
     public String welcome(Model model) {
-        model.addAttribute("listaNovelasNuevas", novelaService.findAllByOrderByIdDesc());
+        model.addAttribute("listaNovelasNuevas", novelaService.findAllByOrderByIdDesc().subList(0,5));
         model.addAttribute("listaNovelasPun", novelaService.findByPuntuacion());
         return "index";
     }

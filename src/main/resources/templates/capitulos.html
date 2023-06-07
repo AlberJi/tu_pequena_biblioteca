@@ -1,54 +1,47 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragmentos::encabezado(~{::title}, ~{})}">
-
     <title>Capitulo</title>
 </head>
 
-<body>
+<body class="darkmode">
 <header th:replace="~{fragmentos::barra-nav}"></header>
     <main>
-
-        <div class="texto" th:each=" capitulo : ${capituloVista}">
-            <div th:text="${capitulo.novela.titulo + ' Capitulo:' + capitulo.titulo}">Titulo de Novela</div>
-            <div th:text="${capitulo.parrafo}">Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
-                Itaque hic, facere optio qui neque ullam quam soluta,
-                repellat quibusdam reprehenderit aspernatur enim atque,
-                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
-            </div>
-            <div th:text="${capitulo.parrafo2}">Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
-                Itaque hic, facere optio qui neque ullam quam soluta,
-                repellat quibusdam reprehenderit aspernatur enim atque,
-                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
-            </div>
-            <div th:text="${capitulo.parrafo3}">Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit.
-                Itaque hic, facere optio qui neque ullam quam soluta,
-                repellat quibusdam reprehenderit aspernatur enim atque,
-                quas dolorum accusantium dolores nostrum repudiandae reiciendis!
+        <div id="content">
+            <div class="wrapper">
+                <div class="postbody nosidebar">
+                    <div class="bixbox episodedl">
+                        <div class="epwrapper">
+                            <div class="epcontent entry-content">
+                                <div class="texto" th:each=" capitulo : ${capituloVista}">
+                                    <div th:text="${capitulo.novela.titulo + ' Capitulo:' + capitulo.titulo}">Titulo de Novela</div>
+                                    <div th:text="${capitulo.parrafo}"></div>
+                                    <div th:text="${capitulo.parrafo2}"></div>
+                                    <div th:text="${capitulo.parrafo3}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row_css row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <nav aria-label="Pagination">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
                             <a class="page-link"
-                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${prev.titulo},nombre_novela=${capituloVista.novela.titulo})}"
+                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${prev.titulo},nombre_novela=${novela_nombre.toString()})}"
                                th:classappend="${current == first ? 'disabled' : ''}">Anterior</a>
                         </li>
                         <li class="page-item">
                             <a class="page-link"
-                               th:href="@{/novela/{nombre_novela}(nombre_novela=${capituloVista.novela.titulo})}">TOC</a>
+                               th:href="@{/novela/{nombre_novela}(nombre_novela=${novela_nombre.toString()})}">TOC</a>
                         </li>
                         <li class="page-item">
                             <a class="page-link"
-                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${next.titulo},nombre_novela=${capituloVista.novela.titulo})}"
+                               th:href="@{/novela/{nombre_novela}/{nombre}(nombre=${next.titulo},nombre_novela=${novela_nombre.toString()})}"
                                th:classappend="${current == last ? 'disabled' : ''}">Siguiente</a>
                         </li>
                     </ul>
